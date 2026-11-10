@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMA — Modern Italian Bistro | Refined Taste, Everyday Price.</title>
+    
+    <!-- Meta tags for SEO & Social -->
+    <meta name="description" content="FORMA 現代義式餐廳／餐酒館，提供具有精品美學的日常義式料理。Refined Taste, Everyday Price.">
+    <meta property="og:title" content="FORMA — Modern Italian Bistro">
+    <meta property="og:description" content="精緻品味，日常價格。A NEW FORM OF DINING.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#111315',
+                        graphite: '#24282B',
+                        stone: '#858783',
+                        silver: '#B7B5AE',
+                        ivory: '#EAE8E2',
+                        taupe: '#8C715D',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', '"Noto Sans TC"', 'sans-serif'],
+                        chinese: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Editorial Luxury Styles & Animations -->
+    <style>
+        /* Base Styling & Custom Colors */
+        body {
+            background-color: #111315;
+            color: #EAE8E2;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            overflow-x: hidden;
+            word-break: break-word;
+        }
+
+        /* Typography Helper Classes */
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Smooth Custom Cursor for Desktop */
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 9999;
+                border: 1px solid rgba(234, 232, 226, 0.4);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                transform: translate(-50%, -50%);
+                transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s;
+            }
+            .custom-cursor-dot {
+                pointer-events: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10000;
+                background-color: #8C715D;
+                border-radius: 50%;
+                width: 6px;
+                height: 6px;
+                transform: translate(-50%, -50%);
+            }
+            .cursor-hover .custom-cursor {
+                width: 56px;
+                height: 56px;
+                background-color: rgba(140, 113, 93, 0.15);
+                border-color: #8C715D;
+            }
+        }
+
+        /* Nav link subtle underlines */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #8C715D;
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Image Hover Zoom & Reveal Effects */
+        .img-reveal-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        .img-reveal-wrapper img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+        }
+        .img-reveal-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Scroll Animations Thresholds & Staggered Reveal */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= FEATURE 1: Left-to-Right Text Reveal ================= */
+        .page-header-title,
+        .page-header-subtitle,
+        .page-header-tag {
+            position: relative;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+            opacity: 0;
+            will-change: clip-path, opacity;
+        }
+        
+        .page-header-tag {
+            transition-delay: 0.1s;
+        }
+        .page-header-title {
+            transition-delay: 0.25s;
+        }
+        .page-header-subtitle {
+            transition-delay: 0.6s;
+        }
+
+        .is-visible .page-header-title,
+        .is-visible .page-header-subtitle,
+        .is-visible .page-header-tag {
+            clip-path: inset(0 0 0 0);
+            opacity: 1;
+        }
+
+        /* ================= FEATURE 1-B: Text Deconstruction (Disassembly) ================= */
+        .deconstruct-char {
+            display: inline-block;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, filter 0.35s ease;
+            will-change: transform, opacity, filter;
+            pointer-events: auto;
+        }
+
+        .deconstruct-char.deconstructed {
+            filter: blur(1px);
+        }
+
+        /* Hide scrollbars for slick galleries */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Editorial Border Accent Lines */
+        .editorial-line {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(183,181,174,0) 0%, rgba(183,181,174,0.3) 50%, rgba(183,181,174,0) 100%);
+        }
+
+        /* Interactive Map Container */
+        .map-wrapper iframe {
+            filter: grayscale(85%) invert(92%) contrast(83%);
+            transition: filter 0.5s ease;
+        }
+        .map-wrapper:hover iframe {
+            filter: grayscale(40%) invert(92%) contrast(85%);
+        }
+
+        /* Respect Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll,
+            .page-header-title,
+            .page-header-subtitle,
+            .page-header-tag,
+            .deconstruct-char {
+                clip-path: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                filter: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-taupe selection:text-ivory">
+
+    <!-- Custom Cursor (Desktop Only) -->
+    <div id="cursor" class="custom-cursor hidden lg:block"></div>
+    <div id="cursor-dot" class="custom-cursor-dot hidden lg:block"></div>
+
+    <!-- MAIN NAVIGATION -->
+    <header id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 bg-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" onclick="navigateTo('home')" class="group flex items-center gap-3 text-2xl font-serif tracking-widest text-ivory">
+                <span class="font-bold text-3xl text-taupe group-hover:scale-110 transition-transform duration-300">F.</span>
+                <span class="tracking-[0.25em] text-lg font-light hidden sm:inline-block border-l border-silver/20 pl-3">FORMA</span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-[0.2em] font-medium text-silver">
+                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link active hover:text-ivory uppercase transition-colors">Home</a>
+                <a href="#about" onclick="navigateTo('about')" id="nav-about" class="nav-link hover:text-ivory uppercase transition-colors">About</a>
+                <a href="#menu" onclick="navigateTo('menu')" id="nav-menu" class="nav-link hover:text-ivory uppercase transition-colors">Menu</a>
+                <a href="#gallery" onclick="navigateTo('gallery')" id="nav-gallery" class="nav-link hover:text-ivory uppercase transition-colors">Gallery</a>
+                <a href="#location" onclick="navigateTo('location')" id="nav-location" class="nav-link hover:text-ivory uppercase transition-colors">Location</a>
+            </nav>
+
+            <!-- Reservation Button CTA -->
+            <div class="hidden md:flex items-center">
+                <a href="#reservation" onclick="navigateTo('reservation')" class="px-6 py-2.5 border border-taupe/60 text-ivory text-xs tracking-[0.2em] uppercase hover:bg-taupe hover:text-obsidian transition-all duration-300 rounded-none">
+                    Reservation
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button id="menu-toggle" aria-label="Toggle Navigation Menu" class="md:hidden text-ivory focus:outline-none p-2">
+                <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-obsidian/98 backdrop-blur-xl z-40 flex flex-col justify-between px-8 py-20 translate-x-full transition-transform duration-500 ease-in-out md:hidden">
+            <button id="menu-close" aria-label="Close Navigation Menu" class="absolute top-6 right-6 text-ivory p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div class="flex flex-col space-y-6">
+                <span class="text-xs text-taupe tracking-widest uppercase mb-4">Navigation</span>
+                <a href="#home" onclick="navigateTo('home'); toggleMobileMenu(false);" class="text-2xl font-serif text-ivory hover:text-taupe transition-colors">01. HOME</a>
+                <a href="#about" onclick="navigateTo('about'); toggleMobileMenu(false);" class="text-2xl font-serif text-ivory hover:text-taupe transition-colors">02. ABOUT</a>
+                <a href="#menu" onclick="navigateTo('menu'); toggleMobileMenu(false);" class="text-2xl font-serif text-ivory hover:text-taupe transition-colors">03. MENU</a>
+                <a href="#gallery" onclick="navigateTo('gallery'); toggleMobileMenu(false);" class="text-2xl font-serif text-ivory hover:text-taupe transition-colors">04. GALLERY</a>
+                <a href="#location" onclick="navigateTo('location'); toggleMobileMenu(false);" class="text-2xl font-serif text-ivory hover:text-taupe transition-colors">05. LOCATION</a>
+            </div>
+
+            <div class="space-y-6">
+                <a href="#reservation" onclick="navigateTo('reservation'); toggleMobileMenu(false);" class="block w-full py-4 text-center border border-taupe text-ivory tracking-widest uppercase hover:bg-taupe hover:text-obsidian transition-colors">
+                    Make a Reservation
+                </a>
+                <div class="text-center text-xs text-stone tracking-wider">
+                    Refined Taste, Everyday Price.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT VIEWS WRAPPER -->
+    <main id="app-content" class="min-h-screen pt-20">
+
+        <!-- ================= PAGE 1: HOME ================= -->
+        <section id="view-home" class="page-view space-y-24 md:space-y-36 pb-24">
+            
+            <!-- Hero Section -->
+            <div class="relative min-h-[90vh] flex items-center justify-center px-6 md:px-12 pt-12 overflow-hidden reveal-on-scroll">
+                <!-- Background Image Layer with Gradient Overlay -->
+                <div class="absolute inset-0 z-0 opacity-40 img-reveal-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80" 
+                         alt="FORMA Modern Italian Dining Atmosphere" 
+                         class="w-full h-full object-cover object-center scale-105"
+                         onerror="this.src='https://placehold.co/1920x1080/24282B/EAE8E2?text=FORMA+Bistro+Atmosphere'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-transparent"></div>
+                </div>
+
+                <!-- Hero Content -->
+                <div class="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+                    <!-- Modern Italian Bistro Label: Enhanced Contrast & Legibility Only -->
+                    <div class="inline-block px-5 py-2 border border-taupe/80 text-ivory bg-obsidian/75 backdrop-blur-md text-xs font-medium tracking-[0.3em] uppercase drop-shadow-md page-header-tag">
+                        Modern Italian Bistro
+                    </div>
+                    
+                    <!-- Left-to-Right Reveal & Deconstruct Title -->
+                    <h1 id="hero-title" class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif tracking-tight text-ivory font-light leading-none select-none page-header-title">
+                        <span class="deconstructable">A NEW FORM</span><br/>
+                        <span class="italic font-normal text-taupe deconstructable">OF DINING.</span>
+                    </h1>
+
+                    <div class="max-w-xl mx-auto space-y-4 page-header-subtitle">
+                        <p class="text-lg md:text-xl font-serif text-silver tracking-widest italic deconstructable">
+                            Refined Taste, Everyday Price.
+                        </p>
+                        <p class="text-xs md:text-sm text-stone tracking-widest uppercase font-light">
+                            精緻品味，日常價格 — 融入生活美學的現代義式餐酒體驗
+                        </p>
+                    </div>
+
+                    <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <a href="#menu" onclick="navigateTo('menu')" class="w-full sm:w-auto px-8 py-4 bg-taupe text-obsidian font-medium text-xs tracking-[0.25em] uppercase hover:bg-ivory transition-colors duration-300">
+                            Explore Menu
+                        </a>
+                        <a href="#reservation" onclick="navigateTo('reservation')" class="w-full sm:w-auto px-8 py-4 border border-silver/40 text-ivory text-xs tracking-[0.25em] uppercase hover:border-taupe hover:text-taupe transition-colors duration-300">
+                            Book Table
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Scroll Down Indicator -->
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+                    <span class="text-[10px] tracking-[0.3em] uppercase text-stone">Scroll</span>
+                    <div class="w-px h-8 bg-gradient-to-b from-stone to-transparent animate-pulse"></div>
+                </div>
+            </div>
+
+            <!-- Section 01: Philosophy -->
+            <div class="max-w-7xl mx-auto px-6 md:px-12 reveal-on-scroll">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">01 — Philosophy</span>
+                        <h2 class="text-3xl md:text-5xl font-serif text-ivory leading-tight page-header-title">
+                            <span class="deconstructable">A FORM OF</span><br/>
+                            <span class="italic text-silver deconstructable">EVERYDAY LUXURY.</span>
+                        </h2>
+                        <div class="w-12 h-px bg-taupe"></div>
+                        <p class="text-stone font-light leading-relaxed text-sm">
+                            精緻不應該是一種奢侈，而是可以自然融入日常生活的品味。品牌名稱 FORMA 在義大利語中代表「形式與形態」，我們將其延伸為三個層次：料理的形式 (Form of Food)、空間的形式 (Form of Space) 與生活的形式 (Form of Living)。
+                        </p>
+                        <p class="text-silver/80 font-light text-xs tracking-wider leading-relaxed">
+                            我們跳脫傳統頂級餐廳的繁複限制，以親民的價格提供講究品質與設計感的主廚特製義式料理。
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+                        <div class="img-reveal-wrapper rounded-sm overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" 
+                                 alt="FORMA Interior Space Aesthetics" 
+                                 class="w-full h-80 md:h-96 object-cover"
+                                 onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Bistro+Interior'">
+                        </div>
+                        <div class="img-reveal-wrapper rounded-sm overflow-hidden shadow-2xl mt-8">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" 
+                                 alt="FORMA Culinary Craftsmanship" 
+                                 class="w-full h-80 md:h-96 object-cover"
+                                 onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Plated+Dish'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 02: Menu Selection (Required Showcase) -->
+            <div class="bg-graphite/40 py-24 border-y border-silver/10 reveal-on-scroll">
+                <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">02 — Menu Selection</span>
+                            <h2 class="text-3xl md:text-5xl font-serif text-ivory deconstructable page-header-title">MAIN DISHES & DESSERT</h2>
+                            <p class="text-xs text-stone tracking-widest uppercase mt-2 page-header-subtitle">精選義式經典料理與手工甜點</p>
+                        </div>
+                        <a href="#menu" onclick="navigateTo('menu')" class="text-xs tracking-[0.2em] text-taupe hover:text-ivory uppercase flex items-center gap-2 group transition-colors">
+                            View Full Menu 
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Dishes Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        
+                        <!-- Dish 1: 奶油野菇義大利麵 (Fixed authentic imagery) -->
+                        <div class="group bg-obsidian border border-silver/10 hover:border-taupe/40 transition-all duration-300 p-4">
+                            <div class="img-reveal-wrapper mb-4 h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Creamy Mushroom Pasta 奶油野菇義大利麵" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1621996346565-e3d5d6281313?auto=format&fit=crop&w=800&q=80'">
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-baseline">
+                                    <h3 class="font-serif text-lg text-ivory group-hover:text-taupe transition-colors">Creamy Mushroom Pasta</h3>
+                                    <span class="text-sm font-serif text-taupe">NT$190</span>
+                                </div>
+                                <div class="text-xs text-silver font-chinese">奶油野菇義大利麵</div>
+                                <p class="text-[11px] text-stone font-light leading-relaxed">濃郁牛肝菌菇白醬，搭襯帕馬森起司與多重香草炒野菇。</p>
+                            </div>
+                        </div>
+
+                        <!-- Dish 2: 蒜香辣椒鮮蝦麵 -->
+                        <div class="group bg-obsidian border border-silver/10 hover:border-taupe/40 transition-all duration-300 p-4">
+                            <div class="img-reveal-wrapper mb-4 h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Garlic Chili Shrimp Pasta 蒜香辣椒鮮蝦麵" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Garlic+Chili+Shrimp+Pasta'">
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-baseline">
+                                    <h3 class="font-serif text-lg text-ivory group-hover:text-taupe transition-colors">Garlic Chili Shrimp Pasta</h3>
+                                    <span class="text-sm font-serif text-taupe">NT$250</span>
+                                </div>
+                                <div class="text-xs text-silver font-chinese">蒜香辣椒鮮蝦麵</div>
+                                <p class="text-[11px] text-stone font-light leading-relaxed">初榨橄欖油清炒生食級大鮮蝦，搭配焦香蒜片與風乾辣椒。</p>
+                            </div>
+                        </div>
+
+                        <!-- Dish 3: 香煎雞肉燉飯 -->
+                        <div class="group bg-obsidian border border-silver/10 hover:border-taupe/40 transition-all duration-300 p-4">
+                            <div class="img-reveal-wrapper mb-4 h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Pan-seared Chicken Risotto 香煎雞肉燉飯" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Pan-seared+Chicken+Risotto'">
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-baseline">
+                                    <h3 class="font-serif text-lg text-ivory group-hover:text-taupe transition-colors">Pan-seared Chicken Risotto</h3>
+                                    <span class="text-sm font-serif text-taupe">NT$260</span>
+                                </div>
+                                <div class="text-xs text-silver font-chinese">香煎雞肉燉飯</div>
+                                <p class="text-[11px] text-stone font-light leading-relaxed">義大利Carnaroli燉飯米，搭配酥皮舒肥雞胸與雞高湯精華。</p>
+                            </div>
+                        </div>
+
+                        <!-- Dish 4: 經典提拉米蘇 -->
+                        <div class="group bg-obsidian border border-silver/10 hover:border-taupe/40 transition-all duration-300 p-4">
+                            <div class="img-reveal-wrapper mb-4 h-56 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80" 
+                                     alt="Classic Tiramisu 經典提拉米蘇" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Classic+Tiramisu'">
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-baseline">
+                                    <h3 class="font-serif text-lg text-ivory group-hover:text-taupe transition-colors">Classic Tiramisu</h3>
+                                    <span class="text-sm font-serif text-taupe">NT$130</span>
+                                </div>
+                                <div class="text-xs text-silver font-chinese">經典提拉米蘇</div>
+                                <p class="text-[11px] text-stone font-light leading-relaxed">濃縮咖啡與馬沙拉酒浸潤手指餅乾，鋪滿香濃馬斯卡彭乳酪與苦甜可可粉。</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 03: The Space Experience -->
+            <div class="max-w-7xl mx-auto px-6 md:px-12 reveal-on-scroll">
+                <div class="relative rounded-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80" 
+                         alt="FORMA Modern Italian Dining Space" 
+                         class="w-full h-[500px] object-cover filter brightness-75"
+                         onerror="this.src='https://placehold.co/1600x800/24282B/EAE8E2?text=Bistro+Atmosphere'">
+                    <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/40 to-transparent flex items-center p-8 md:p-16">
+                        <div class="max-w-md space-y-6">
+                            <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">03 — Architectural Aesthetics</span>
+                            <h2 class="text-3xl md:text-5xl font-serif text-ivory deconstructable page-header-title">THE SPACE</h2>
+                            <p class="text-stone text-xs md:text-sm font-light leading-relaxed">
+                                沉穩石材、質感金屬與低調暖光交織。FORMA 打造沉浸式的當代餐酒氛圍，無論是單人用餐、情侶約會或朋友聚會，都能在此感受靜謐而富層次的空間形態。
+                            </p>
+                            <a href="#about" onclick="navigateTo('about')" class="inline-block pt-2 text-xs text-silver hover:text-taupe tracking-[0.2em] uppercase border-b border-taupe">
+                                Read Space Philosophy →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 04: Three Page Direct Nav Hub -->
+            <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-8 reveal-on-scroll">
+                <div class="text-center space-y-2">
+                    <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">Discover More</span>
+                    <h2 class="text-3xl font-serif text-ivory deconstructable page-header-title">EXPLORE FORMA</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Nav Card 1 -->
+                    <a href="#menu" onclick="navigateTo('menu')" class="group block relative h-80 overflow-hidden border border-silver/10">
+                        <img src="https://images.unsplash.com/photo-1498579809087-ef1e558fd1da?auto=format&fit=crop&w=800&q=80" 
+                             alt="Menu Navigation" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-75"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Menu'">
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                            <h3 class="text-2xl font-serif text-ivory group-hover:text-taupe transition-colors">MENU</h3>
+                            <p class="text-xs text-silver tracking-widest font-chinese mt-1">義式菜單</p>
+                            <span class="text-[10px] text-stone tracking-widest uppercase mt-4 block">View Offerings & Wine →</span>
+                        </div>
+                    </a>
+
+                    <!-- Nav Card 2 -->
+                    <a href="#gallery" onclick="navigateTo('gallery')" class="group block relative h-80 overflow-hidden border border-silver/10">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" 
+                             alt="Gallery Navigation" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-75"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Gallery'">
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                            <h3 class="text-2xl font-serif text-ivory group-hover:text-taupe transition-colors">GALLERY</h3>
+                            <p class="text-xs text-silver tracking-widest font-chinese mt-1">藝廊影像</p>
+                            <span class="text-[10px] text-stone tracking-widest uppercase mt-4 block">Visual Journal →</span>
+                        </div>
+                    </a>
+
+                    <!-- Nav Card 3 -->
+                    <a href="#location" onclick="navigateTo('location')" class="group block relative h-80 overflow-hidden border border-silver/10">
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80" 
+                             alt="Location Navigation" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-50 group-hover:opacity-75"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Location'">
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                            <h3 class="text-2xl font-serif text-ivory group-hover:text-taupe transition-colors">LOCATION</h3>
+                            <p class="text-xs text-silver tracking-widest font-chinese mt-1">餐廳資訊</p>
+                            <span class="text-[10px] text-stone tracking-widest uppercase mt-4 block">Hours & Map →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section 05: Reservation Hero Callout -->
+            <div class="max-w-4xl mx-auto text-center px-6 py-16 space-y-6 border-t border-silver/10 reveal-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-serif text-ivory tracking-wide deconstructable page-header-title">YOUR TABLE, YOUR MOMENT.</h2>
+                <p class="text-stone text-xs md:text-sm font-light max-w-md mx-auto page-header-subtitle">
+                    為您的日常刻劃優雅氛圍。預約今晚在 FORMA 的精緻義式饗宴。
+                </p>
+                <div class="pt-4">
+                    <a href="#reservation" onclick="navigateTo('reservation')" class="inline-block px-10 py-4 bg-taupe text-obsidian text-xs tracking-[0.3em] uppercase hover:bg-ivory transition-colors">
+                        Book Your Experience
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 2: ABOUT ================= -->
+        <section id="view-about" class="page-view hidden max-w-6xl mx-auto px-6 md:px-12 py-12 space-y-24">
+            
+            <!-- Page Header -->
+            <div class="text-center space-y-4 border-b border-silver/10 pb-12 reveal-on-scroll">
+                <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">STORIA & FILOSOFIA</span>
+                <h1 class="text-4xl md:text-6xl font-serif text-ivory page-header-title">
+                    <span class="deconstructable">BRAND PHILOSOPHY & STORY</span>
+                </h1>
+                <p class="text-xs text-stone tracking-widest font-chinese uppercase page-header-subtitle">ABOUT FORMA — 品牌故事與經營理念</p>
+            </div>
+
+            <!-- Section 01: Brand Philosophy -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center reveal-on-scroll">
+                <div class="md:col-span-6 space-y-6">
+                    <h2 class="text-2xl font-serif text-taupe tracking-wider">01. BRAND PHILOSOPHY</h2>
+                    <h3 class="text-3xl font-serif text-ivory leading-tight">精緻不應該是一種奢侈，而是可以自然融入日常生活的品味。</h3>
+                    <p class="text-stone font-light text-sm leading-relaxed">
+                        FORMA 創立於對當代飲食文化的深刻思考。我們觀察到，許多顧客渴望在繁忙日常生活裡享受精緻的美食與高檔的空間視覺，卻常受限於傳統高級餐廳高昂的價格與繁重正式的儀式感。
+                    </p>
+                    <p class="text-silver/80 font-light text-xs leading-relaxed">
+                        因此，FORMA 應運而生——提供「Refined Taste, Everyday Price」。我們希望透過主廚對義式烹調的創新演繹、極簡俐落的空間設計與平易近人的價位，讓每一次用餐都成為自然流露的生活享受。
+                    </p>
+                </div>
+                <div class="md:col-span-6 img-reveal-wrapper rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" 
+                         alt="FORMA Brand Story Photography" 
+                         class="w-full h-96 object-cover"
+                         onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Bistro+Philosophy'">
+                </div>
+            </div>
+
+            <!-- Section 02: Meaning of FORMA -->
+            <div class="bg-graphite/40 p-8 md:p-16 border border-silver/10 space-y-8 reveal-on-scroll">
+                <div class="space-y-2">
+                    <span class="text-xs text-taupe tracking-widest uppercase">Etimologia</span>
+                    <h2 class="text-3xl font-serif text-ivory">02. THE MEANING OF FORMA</h2>
+                    <p class="text-xs text-stone">義大利語中的「形式與形態」</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-silver/10">
+                    <div class="space-y-3">
+                        <span class="text-taupe font-serif text-lg">01 /</span>
+                        <h4 class="font-serif text-xl text-ivory">Form of Food</h4>
+                        <p class="text-xs text-stone leading-relaxed font-light">
+                            料理的形式。回歸義大利經典飲食精神，選用純粹優質食材，以現代簡潔方式展現食材風味本質。
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-taupe font-serif text-lg">02 /</span>
+                        <h4 class="font-serif text-xl text-ivory">Form of Space</h4>
+                        <p class="text-xs text-stone leading-relaxed font-light">
+                            空間的形式。融合石材、金屬與沉穩色彩，創造充滿編輯精品感的建築美學氛圍。
+                        </p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-taupe font-serif text-lg">03 /</span>
+                        <h4 class="font-serif text-xl text-ivory">Form of Living</h4>
+                        <p class="text-xs text-stone leading-relaxed font-light">
+                            生活的形式。將精緻餐酒感受無縫融入 18-35 歲年輕上班族與美學追求者的日常節奏。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 03: Values -->
+            <div class="space-y-8 reveal-on-scroll">
+                <h2 class="text-2xl font-serif text-taupe">03. OUR CORE VALUES</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="p-6 border border-silver/10 bg-obsidian">
+                        <div class="text-taupe text-2xl font-serif mb-2">Q</div>
+                        <h4 class="font-serif text-ivory text-lg mb-1">Quality</h4>
+                        <p class="text-xs text-stone font-light">堅守義式道地底蘊與新鮮食材掌控。</p>
+                    </div>
+                    <div class="p-6 border border-silver/10 bg-obsidian">
+                        <div class="text-taupe text-2xl font-serif mb-2">D</div>
+                        <h4 class="font-serif text-ivory text-lg mb-1">Design</h4>
+                        <p class="text-xs text-stone font-light">將現代幾何視覺貫穿擺盤與空間細節。</p>
+                    </div>
+                    <div class="p-6 border border-silver/10 bg-obsidian">
+                        <div class="text-taupe text-2xl font-serif mb-2">L</div>
+                        <h4 class="font-serif text-ivory text-lg mb-1">Everyday Luxury</h4>
+                        <p class="text-xs text-stone font-light">不需要特別節日，每天都能享有的儀式感。</p>
+                    </div>
+                    <div class="p-6 border border-silver/10 bg-obsidian">
+                        <div class="text-taupe text-2xl font-serif mb-2">A</div>
+                        <h4 class="font-serif text-ivory text-lg mb-1">Accessibility</h4>
+                        <p class="text-xs text-stone font-light">親民合理價格，讓美食美學觸手可及。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 04: Space & Cuisine Narrative -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 reveal-on-scroll">
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-serif text-ivory">04. OUR SPACE</h2>
+                    <p class="text-stone text-xs leading-relaxed font-light">
+                        我們邀請當代建築美學團隊，以深色石墨灰與質感石材打造輕奢低調的環境。不論是單人午餐、夜晚酒吧微醺，皆能在此找到最舒適的沉澱角落。
+                    </p>
+                    <div class="img-reveal-wrapper pt-4">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" 
+                             alt="FORMA Interior Space" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Space'">
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-serif text-ivory">05. OUR CUISINE</h2>
+                    <p class="text-stone text-xs leading-relaxed font-light">
+                        我們主打現代義式燉飯、手工義大利麵與精緻甜點。融合經典義大利烹調思維與在地優質食材，呈現鮮明、精準且富層次的料理記憶。
+                    </p>
+                    <div class="img-reveal-wrapper pt-4">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80" 
+                             alt="FORMA Pasta Culinary Art" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.src='https://placehold.co/800x600/24282B/EAE8E2?text=Cuisine'">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 3: MENU ================= -->
+        <section id="view-menu" class="page-view hidden max-w-6xl mx-auto px-6 md:px-12 py-12 space-y-12">
+            
+            <!-- Menu Header -->
+            <div class="text-center space-y-4 border-b border-silver/10 pb-12 reveal-on-scroll">
+                <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">IL MENU</span>
+                <h1 class="text-4xl md:text-6xl font-serif text-ivory page-header-title">
+                    <span class="deconstructable">OUR MENU</span>
+                </h1>
+                <p class="text-xs text-stone tracking-widest font-chinese uppercase page-header-subtitle">義式菜單 — 精緻美學料理</p>
+            </div>
+
+            <!-- Menu Category Filter Tabs -->
+            <div class="flex justify-center border-b border-silver/10 reveal-on-scroll">
+                <div class="flex space-x-8 text-xs tracking-[0.2em] uppercase">
+                    <button onclick="switchMenuCategory('all')" id="tab-all" class="menu-tab py-4 text-taupe border-b-2 border-taupe font-medium transition-colors">All Categories</button>
+                    <button onclick="switchMenuCategory('pasta')" id="tab-pasta" class="menu-tab py-4 text-stone hover:text-ivory border-b-2 border-transparent transition-colors">Pasta & Risotto</button>
+                    <button onclick="switchMenuCategory('dessert')" id="tab-dessert" class="menu-tab py-4 text-stone hover:text-ivory border-b-2 border-transparent transition-colors">Dessert</button>
+                    <button onclick="switchMenuCategory('beverages')" id="tab-beverages" class="menu-tab py-4 text-stone hover:text-ivory border-b-2 border-transparent transition-colors">Beverages & Wine</button>
+                </div>
+            </div>
+
+            <!-- Category 1: Pasta & Risotto -->
+            <div id="cat-pasta" class="menu-category-block space-y-8 reveal-on-scroll" data-category="pasta">
+                <h2 class="text-2xl font-serif text-taupe border-l-2 border-taupe pl-4">PASTA & RISOTTO</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Item 1: Fixed Creamy Mushroom Pasta Image -->
+                    <div class="flex gap-4 p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all">
+                        <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=300&q=80" 
+                             alt="Creamy Mushroom Pasta" 
+                             class="w-24 h-24 object-cover flex-shrink-0"
+                             onerror="this.src='https://images.unsplash.com/photo-1621996346565-e3d5d6281313?auto=format&fit=crop&w=300&q=80'">
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Creamy Mushroom Pasta</h3>
+                                <span class="font-serif text-taupe font-medium">NT$190</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">奶油野菇義大利麵</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">濃郁牛肝菌菇白醬、帕馬森起司、香草炒野菇。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex gap-4 p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80" 
+                             alt="Garlic Chili Shrimp Pasta" 
+                             class="w-24 h-24 object-cover flex-shrink-0"
+                             onerror="this.src='https://placehold.co/300x300/24282B/EAE8E2?text=Shrimp+Pasta'">
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Garlic Chili Shrimp Pasta</h3>
+                                <span class="font-serif text-taupe font-medium">NT$250</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">蒜香辣椒鮮蝦麵</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">初榨橄欖油清炒生食級大鮮蝦、焦香蒜片、風乾辣椒。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="flex gap-4 p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=300&q=80" 
+                             alt="Tomato Seafood Pasta" 
+                             class="w-24 h-24 object-cover flex-shrink-0"
+                             onerror="this.src='https://placehold.co/300x300/24282B/EAE8E2?text=Seafood+Pasta'">
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Tomato Seafood Pasta</h3>
+                                <span class="font-serif text-taupe font-medium">NT$280</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">番茄海鮮義大利麵</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">主廚熬製紅醬、透抽、蛤蜊、鮮蝦與九層塔香氣。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="flex gap-4 p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all">
+                        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=300&q=80" 
+                             alt="Pesto Chicken Pasta" 
+                             class="w-24 h-24 object-cover flex-shrink-0"
+                             onerror="this.src='https://placehold.co/300x300/24282B/EAE8E2?text=Pesto+Pasta'">
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Pesto Chicken Pasta</h3>
+                                <span class="font-serif text-taupe font-medium">NT$230</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">青醬雞肉義大利麵</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">手作松子羅勒青醬、嫩煎雞胸肉、烤松子與起司。</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="flex gap-4 p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all md:col-span-2">
+                        <img src="https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?auto=format&fit=crop&w=300&q=80" 
+                             alt="Pan-seared Chicken Risotto" 
+                             class="w-24 h-24 object-cover flex-shrink-0"
+                             onerror="this.src='https://placehold.co/300x300/24282B/EAE8E2?text=Risotto'">
+                        <div class="flex-grow space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Pan-seared Chicken Risotto</h3>
+                                <span class="font-serif text-taupe font-medium">NT$260</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">香煎雞肉燉飯</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">義大利 Carnaroli 燉飯米、雞高湯吸附、香煎皮脆肉嫩雞腿排。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Category 2: Dessert -->
+            <div id="cat-dessert" class="menu-category-block space-y-8 reveal-on-scroll" data-category="dessert">
+                <h2 class="text-2xl font-serif text-taupe border-l-2 border-taupe pl-4">DESSERT</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Dessert 1 -->
+                    <div class="p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all space-y-4">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=80" 
+                             alt="Classic Tiramisu" 
+                             class="w-full h-40 object-cover"
+                             onerror="this.src='https://placehold.co/500x300/24282B/EAE8E2?text=Tiramisu'">
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Classic Tiramisu</h3>
+                                <span class="font-serif text-taupe font-medium">NT$130</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">經典提拉米蘇</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">濃縮咖啡浸潤手指餅乾、馬斯卡彭乳酪、苦甜可可粉。</p>
+                        </div>
+                    </div>
+
+                    <!-- Dessert 2 -->
+                    <div class="p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all space-y-4">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80" 
+                             alt="Vanilla Panna Cotta" 
+                             class="w-full h-40 object-cover"
+                             onerror="this.src='https://placehold.co/500x300/24282B/EAE8E2?text=Panna+Cotta'">
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Vanilla Panna Cotta</h3>
+                                <span class="font-serif text-taupe font-medium">NT$110</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">香草奶酪</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">馬達加斯加香草籽鮮奶酪、手工莓果降淋醬。</p>
+                        </div>
+                    </div>
+
+                    <!-- Dessert 3 -->
+                    <div class="p-4 bg-graphite/30 border border-silver/10 hover:border-taupe/30 transition-all space-y-4">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80" 
+                             alt="Chocolate Cake" 
+                             class="w-full h-40 object-cover"
+                             onerror="this.src='https://placehold.co/500x300/24282B/EAE8E2?text=Chocolate+Cake'">
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <h3 class="font-serif text-lg text-ivory">Chocolate Cake</h3>
+                                <span class="font-serif text-taupe font-medium">NT$140</span>
+                            </div>
+                            <div class="text-xs text-silver font-chinese">巧克力蛋糕</div>
+                            <p class="text-[11px] text-stone leading-normal font-light">70% 法國 Valrhona 熔岩黑巧克力蛋糕，佐以薄荷葉。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Category 3: Beverages & Wine -->
+            <div id="cat-beverages" class="menu-category-block space-y-8 reveal-on-scroll" data-category="beverages">
+                <h2 class="text-2xl font-serif text-taupe border-l-2 border-taupe pl-4">BEVERAGES & WINE</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="flex justify-between items-center p-4 bg-graphite/20 border border-silver/10">
+                        <div>
+                            <h3 class="font-serif text-lg text-ivory">Espresso</h3>
+                            <div class="text-xs text-silver font-chinese">義式濃縮咖啡</div>
+                            <p class="text-[11px] text-stone font-light">中深烘焙單品配方豆，帶有黑巧克力與堅果香氣。</p>
+                        </div>
+                        <span class="font-serif text-taupe font-medium text-lg">NT$100</span>
+                    </div>
+
+                    <div class="flex justify-between items-center p-4 bg-graphite/20 border border-silver/10">
+                        <div>
+                            <h3 class="font-serif text-lg text-ivory">Sparkling Fruit Drink</h3>
+                            <div class="text-xs text-silver font-chinese">氣泡水果飲</div>
+                            <p class="text-[11px] text-stone font-light">氣泡水搭配特調熱帶水果糖醬與新鮮薄荷。</p>
+                        </div>
+                        <span class="font-serif text-taupe font-medium text-lg">NT$120</span>
+                    </div>
+
+                    <div class="flex justify-between items-center p-4 bg-graphite/20 border border-silver/10">
+                        <div>
+                            <h3 class="font-serif text-lg text-ivory">Red Wine by Glass</h3>
+                            <div class="text-xs text-silver font-chinese">紅酒（單杯）</div>
+                            <p class="text-[11px] text-stone font-light">精選義大利 Chianti 產區紅酒，口感順口富含漿果香。</p>
+                        </div>
+                        <span class="font-serif text-taupe font-medium text-lg">NT$180</span>
+                    </div>
+
+                    <div class="flex justify-between items-center p-4 bg-graphite/20 border border-silver/10">
+                        <div>
+                            <h3 class="font-serif text-lg text-ivory">Aperol Spritz</h3>
+                            <div class="text-xs text-silver font-chinese">Aperol Spritz 經典開胃酒</div>
+                            <p class="text-[11px] text-stone font-light">Aperol 苦甜酒、Prosecco 氣泡酒與新鮮橙片。</p>
+                        </div>
+                        <span class="font-serif text-taupe font-medium text-lg">NT$200</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 4: GALLERY ================= -->
+        <section id="view-gallery" class="page-view hidden max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-12">
+            
+            <!-- Gallery Header -->
+            <div class="text-center space-y-4 border-b border-silver/10 pb-12 reveal-on-scroll">
+                <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">JOURNAL</span>
+                <h1 class="text-4xl md:text-6xl font-serif text-ivory page-header-title">
+                    <span class="deconstructable">VISUAL JOURNAL</span>
+                </h1>
+                <p class="text-xs text-stone tracking-widest font-chinese uppercase page-header-subtitle">藝廊影像 — 空間與美食的美學紀錄</p>
+            </div>
+
+            <!-- Asymmetric Editorial Photo Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 reveal-on-scroll">
+                
+                <!-- Photo 1: Large Feature -->
+                <div onclick="openLightbox(0)" class="md:col-span-8 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-96 md:h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" 
+                             alt="FORMA Interior Lighting" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/1200x800/24282B/EAE8E2?text=Bistro+Gallery+1'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 2: Vertical Dish -->
+                <div onclick="openLightbox(1)" class="md:col-span-4 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-96 md:h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=800&q=80" 
+                             alt="Creamy Pasta Showcase" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Bistro+Gallery+2'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div onclick="openLightbox(2)" class="md:col-span-4 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-72">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80" 
+                             alt="Tiramisu Dessert Close-up" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Bistro+Gallery+3'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div onclick="openLightbox(3)" class="md:col-span-4 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-72">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" 
+                             alt="Wine Pouring Details" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Bistro+Gallery+4'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div onclick="openLightbox(4)" class="md:col-span-4 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-72">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" 
+                             alt="Bistro Dining Atmosphere" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x800/24282B/EAE8E2?text=Bistro+Gallery+5'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 6: Wide Footer Banner -->
+                <div onclick="openLightbox(5)" class="md:col-span-12 group relative cursor-pointer overflow-hidden border border-silver/10">
+                    <div class="h-80">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80" 
+                             alt="Culinary Plating Art" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/1600x600/24282B/EAE8E2?text=Bistro+Gallery+6'">
+                        <div class="absolute inset-0 bg-obsidian/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 border border-ivory text-ivory text-xs tracking-[0.2em] uppercase">VIEW MORE +</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Lightbox Modal -->
+            <div id="lightbox" class="fixed inset-0 bg-obsidian/95 z-50 hidden flex flex-col justify-between p-6 md:p-12">
+                <div class="flex justify-between items-center">
+                    <span id="lightbox-counter" class="text-xs text-taupe tracking-widest font-serif">01 / 06</span>
+                    <button onclick="closeLightbox()" class="text-ivory hover:text-taupe p-2 text-2xl font-light">✕</button>
+                </div>
+                
+                <div class="flex items-center justify-between my-auto">
+                    <button onclick="prevLightboxImage()" class="text-ivory hover:text-taupe p-4 text-3xl font-serif">‹</button>
+                    <div class="max-w-4xl max-h-[70vh] p-2 overflow-hidden">
+                        <img id="lightbox-img" src="" alt="Gallery Preview" class="max-w-full max-h-[65vh] object-contain mx-auto shadow-2xl">
+                        <p id="lightbox-caption" class="text-center text-xs text-silver mt-4 font-serif tracking-widest"></p>
+                    </div>
+                    <button onclick="nextLightboxImage()" class="text-ivory hover:text-taupe p-4 text-3xl font-serif">›</button>
+                </div>
+
+                <div class="text-center text-[10px] text-stone tracking-widest uppercase">
+                    Press ESC or Click Outside to Close
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 5: RESERVATION ================= -->
+        <section id="view-reservation" class="page-view hidden max-w-4xl mx-auto px-6 md:px-12 py-12 space-y-12">
+            
+            <!-- Reservation Header -->
+            <div class="text-center space-y-4 border-b border-silver/10 pb-12 reveal-on-scroll">
+                <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">PRENOTAZIONE</span>
+                <h1 class="text-4xl md:text-6xl font-serif text-ivory page-header-title">
+                    <span class="deconstructable">MAKE A RESERVATION</span>
+                </h1>
+                <p class="text-xs text-stone tracking-widest font-chinese uppercase page-header-subtitle">YOUR TABLE, YOUR MOMENT. — 線上座位預約</p>
+            </div>
+
+            <!-- Front-end Exhibition Reservation Form -->
+            <form id="reservation-form" onsubmit="handleReservationSubmit(event)" class="bg-graphite/30 p-8 md:p-12 border border-silver/10 space-y-8 reveal-on-scroll">
+                
+                <!-- Notice Banner -->
+                <div class="p-4 bg-obsidian border-l-2 border-taupe text-xs text-stone space-y-1">
+                    <div class="text-silver font-medium">訂位須知 / Note</div>
+                    <p>此系統為 FORMA 前端展示型預約功能，填寫送出後將顯示訂位摘要資訊。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- 1. Name -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-name">姓名 / Full Name *</label>
+                        <input type="text" id="res-name" required placeholder="例如：王小明" 
+                               class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- 2. Phone -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-phone">聯絡電話 / Phone *</label>
+                        <input type="tel" id="res-phone" required placeholder="0912-345-678" 
+                               class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- 3. Date -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-date">訂位日期 / Date *</label>
+                        <input type="date" id="res-date" required 
+                               class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                    </div>
+
+                    <!-- 4. Time Slot -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-time">訂位時間 / Time Slot *</label>
+                        <select id="res-time" required class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                            <option value="">請選擇用餐時段</option>
+                            <option value="12:00">12:00 (Lunch)</option>
+                            <option value="13:30">13:30 (Lunch)</option>
+                            <option value="18:00">18:00 (Dinner)</option>
+                            <option value="19:30">19:30 (Dinner)</option>
+                            <option value="21:00">21:00 (Late Night BISTRO)</option>
+                        </select>
+                    </div>
+
+                    <!-- 5. Guests -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-guests">用餐人數 / Guests *</label>
+                        <select id="res-guests" required class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                            <option value="1">1位 (Single Dining)</option>
+                            <option value="2" selected>2位 (Duo Dining)</option>
+                            <option value="3">3位</option>
+                            <option value="4">4位 (Group Table)</option>
+                            <option value="6">6位 (Large Party)</option>
+                        </select>
+                    </div>
+
+                    <!-- 6. Seating Preference -->
+                    <div class="space-y-2">
+                        <label class="block text-xs uppercase tracking-widest text-silver" for="res-seating">座位偏好 / Seating Preference</label>
+                        <select id="res-seating" class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors">
+                            <option value="標準桌位">標準桌位 Standard Table</option>
+                            <option value="高腳吧檯">高腳吧檯 Bar Counter</option>
+                            <option value="靠窗座位">靠窗座位 Window Seat</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- 7. High Chair Checkbox -->
+                <div class="flex items-center space-x-3 pt-2">
+                    <input type="checkbox" id="res-childchair" class="w-4 h-4 bg-obsidian border-silver/40 text-taupe focus:ring-0">
+                    <label for="res-childchair" class="text-xs text-silver">需要兒童座椅 / Need High Chair</label>
+                </div>
+
+                <!-- 8. Special Request -->
+                <div class="space-y-2">
+                    <label class="block text-xs uppercase tracking-widest text-silver" for="res-notes">特殊需求 / Special Requests</label>
+                    <textarea id="res-notes" rows="3" placeholder="例如：飲食禁忌、過敏源或慶祝節日..." 
+                              class="w-full bg-obsidian border border-silver/20 text-ivory p-3 text-sm focus:border-taupe focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-taupe text-obsidian text-xs tracking-[0.3em] uppercase hover:bg-ivory transition-colors font-medium">
+                    Confirm & Submit Reservation
+                </button>
+
+            </form>
+
+            <!-- Reservation Confirmation Summary Overlay -->
+            <div id="reservation-modal" class="fixed inset-0 bg-obsidian/95 z-50 hidden flex items-center justify-center p-6">
+                <div class="bg-graphite p-8 md:p-12 border border-taupe max-w-lg w-full space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="text-taupe text-3xl font-serif">F.</div>
+                        <h3 class="text-2xl font-serif text-ivory">RESERVATION SUMMARY</h3>
+                        <p class="text-xs text-stone uppercase tracking-widest">預約資訊確認摘要</p>
+                    </div>
+
+                    <div id="modal-summary-content" class="space-y-3 text-xs text-silver border-y border-silver/10 py-6">
+                        <!-- Populated via Javascript -->
+                    </div>
+
+                    <p class="text-[11px] text-stone text-center italic">
+                        感謝您填寫預約展示資訊。現場席位將由專人為您安排。
+                    </p>
+
+                    <div class="flex space-x-4">
+                        <button onclick="closeReservationModal()" class="w-1/2 py-3 border border-silver/40 text-silver text-xs uppercase tracking-widest hover:border-ivory hover:text-ivory">
+                            Return to Edit
+                        </button>
+                        <button onclick="finishReservation()" class="w-1/2 py-3 bg-taupe text-obsidian text-xs uppercase tracking-widest hover:bg-ivory">
+                            Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= PAGE 6: LOCATION & CONTACT ================= -->
+        <section id="view-location" class="page-view hidden max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-12">
+            
+            <!-- Location Header -->
+            <div class="text-center space-y-4 border-b border-silver/10 pb-12 reveal-on-scroll">
+                <span class="text-xs text-taupe tracking-[0.3em] uppercase block page-header-tag">CONTATTI & MAPPA</span>
+                <h1 class="text-4xl md:text-6xl font-serif text-ivory page-header-title">
+                    <span class="deconstructable">FIND YOUR WAY TO FORMA</span>
+                </h1>
+                <p class="text-xs text-stone tracking-widest font-chinese uppercase page-header-subtitle">餐廳資訊 — 交通與營業時間</p>
+            </div>
+
+            <!-- Two-Column Editorial Layout: Left Info, Right Interactive Map -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start reveal-on-scroll">
+                
+                <!-- Info Section -->
+                <div class="lg:col-span-5 space-y-8 bg-graphite/30 p-8 border border-silver/10">
+                    
+                    <!-- Address -->
+                    <div class="space-y-2">
+                        <span class="text-xs text-taupe tracking-widest uppercase block">Address / 地址</span>
+                        <p class="text-lg font-serif text-ivory">台中市霧峰區吉峰東路 168 號</p>
+                        <p class="text-xs text-stone">No. 168, Jifeng E. Rd., Wufeng Dist., Taichung City, Taiwan</p>
+                    </div>
+
+                    <div class="w-full h-px bg-silver/10"></div>
+
+                    <!-- Opening Hours -->
+                    <div class="space-y-2">
+                        <span class="text-xs text-taupe tracking-widest uppercase block">Hours / 營業時間</span>
+                        <div class="space-y-1 text-sm text-silver font-light">
+                            <div class="flex justify-between">
+                                <span>週二 — 週五 (Tue - Fri)</span>
+                                <span class="text-ivory">11:30 – 21:30</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>週六 — 週日 (Sat - Sun)</span>
+                                <span class="text-ivory">11:00 – 22:00</span>
+                            </div>
+                            <div class="flex justify-between text-taupe">
+                                <span>週一公休 (Monday)</span>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-px bg-silver/10"></div>
+
+                    <!-- Contact Details -->
+                    <div class="space-y-2">
+                        <span class="text-xs text-taupe tracking-widest uppercase block">Contact / 聯絡方式</span>
+                        <div class="space-y-1 text-sm text-silver">
+                            <p>Phone: <a href="tel:0423323000" class="hover:text-taupe transition-colors">+886 4 2332 3000</a></p>
+                            <p>Email: <a href="mailto:reservation@forma-bistro.tw" class="hover:text-taupe transition-colors">reservation@forma-bistro.tw</a></p>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-px bg-silver/10"></div>
+
+                    <!-- Transportation Info -->
+                    <div class="space-y-2">
+                        <span class="text-xs text-taupe tracking-widest uppercase block">Transportation / 交通建議</span>
+                        <ul class="text-xs text-stone space-y-1 font-light list-disc list-inside">
+                            <li>公車：搭乘台中市公車至「朝陽科技大學」站步行約 3 分鐘。</li>
+                            <li>開車：餐廳周邊備有特約收費停車場。</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://maps.google.com/?q=台中市霧峰區吉峰東路168號" target="_blank" rel="noopener noreferrer" 
+                           class="inline-block text-xs text-taupe hover:text-ivory border-b border-taupe uppercase tracking-widest">
+                            Open in Google Maps →
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Google Maps Official Direct Embed (Fixes JS API Key Errors) -->
+                <div class="lg:col-span-7 map-wrapper border border-silver/10 overflow-hidden shadow-2xl h-[450px] lg:h-[550px]">
+                    <iframe 
+                        title="FORMA Restaurant Google Maps Location"
+                        src="https://maps.google.com/maps?q=%E5%8F%B0%E4%B8%AD%E5%B8%82%E9%9C%A7%E5%B3%B0%E5%8D%80%E5%90%89%E5%AF%B6%E6%9D%B1%E8%B7%AF168%E8%99%9F&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-silver/10 bg-obsidian py-16 px-6 md:px-12 text-silver reveal-on-scroll">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <!-- Col 1: Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl font-serif text-taupe font-bold">F.</span>
+                    <span class="text-lg font-serif text-ivory tracking-widest">FORMA</span>
+                </div>
+                <p class="text-xs text-stone font-serif italic">Refined Taste, Everyday Price.</p>
+                <p class="text-xs text-stone font-light leading-relaxed">
+                    提供具有精品美學的日常義式料理。
+                </p>
+            </div>
+
+            <!-- Col 2: Navigation -->
+            <div class="space-y-3">
+                <span class="text-xs text-taupe tracking-widest uppercase block">Navigation</span>
+                <ul class="space-y-2 text-xs uppercase tracking-wider text-stone">
+                    <li><a href="#home" onclick="navigateTo('home')" class="hover:text-ivory transition-colors">Home</a></li>
+                    <li><a href="#about" onclick="navigateTo('about')" class="hover:text-ivory transition-colors">About FORMA</a></li>
+                    <li><a href="#menu" onclick="navigateTo('menu')" class="hover:text-ivory transition-colors">Menu</a></li>
+                    <li><a href="#gallery" onclick="navigateTo('gallery')" class="hover:text-ivory transition-colors">Visual Journal</a></li>
+                    <li><a href="#location" onclick="navigateTo('location')" class="hover:text-ivory transition-colors">Location</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Hours Summary -->
+            <div class="space-y-3 text-xs">
+                <span class="text-xs text-taupe tracking-widest uppercase block">Hours</span>
+                <p class="text-stone">Tue – Fri: 11:30 – 21:30</p>
+                <p class="text-stone">Sat – Sun: 11:00 – 22:00</p>
+                <p class="text-taupe">Mon: Closed</p>
+            </div>
+
+            <!-- Col 4: Social & Copyright -->
+            <div class="space-y-4 text-xs">
+                <span class="text-xs text-taupe tracking-widest uppercase block">Connect</span>
+                <div class="flex space-x-4">
+                    <a href="#" aria-label="FORMA Instagram Profile" class="text-stone hover:text-taupe transition-colors">Instagram</a>
+                    <a href="#" aria-label="FORMA Facebook Profile" class="text-stone hover:text-taupe transition-colors">Facebook</a>
+                </div>
+                <div class="pt-4 text-[10px] text-stone">
+                    © 2026 FORMA Bistro. All rights reserved.<br/>
+                    GitHub Pages Deployment Ready.
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT APP LOGIC & ANIMATIONS -->
+    <script>
+        // GALLERY ASSETS ARRAY FOR LIGHTBOX
+        const galleryItems = [
+            { src: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80', caption: 'FORMA Interior Lighting Aesthetics' },
+            { src: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=80', caption: 'Creamy Mushroom Pasta Detail' },
+            { src: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=1200&q=80', caption: 'Authentic Italian Tiramisu' },
+            { src: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80', caption: 'Selected Red Wine Service' },
+            { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80', caption: 'Bistro Atmosphere & Architectural Design' },
+            { src: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80', caption: 'Culinary Plating Craftsmanship' }
+        ];
+
+        let currentLightboxIndex = 0;
+
+        // MULTI-PAGE VIEW ROUTER
+        function navigateTo(viewId) {
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(v => v.classList.add('hidden'));
+
+            const targetView = document.getElementById('view-' + viewId);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update Active Nav Link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.id === 'nav-' + viewId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Re-trigger scroll animations & titles reveal
+            initScrollAnimations();
+        }
+
+        // MOBILE MENU TOGGLE
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const menuCloseBtn = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu(show) {
+            if (show) {
+                mobileMenu.classList.remove('translate-x-full');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+            }
+        }
+
+        menuToggleBtn.addEventListener('click', () => toggleMobileMenu(true));
+        menuCloseBtn.addEventListener('click', () => toggleMobileMenu(false));
+
+        // ================= FEATURE 2: MENU CATEGORY FILTER FIX =================
+        function switchMenuCategory(category) {
+            const tabs = document.querySelectorAll('.menu-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('text-taupe', 'border-taupe');
+                tab.classList.add('text-stone', 'border-transparent');
+            });
+
+            const activeTab = document.getElementById('tab-' + category);
+            if (activeTab) {
+                activeTab.classList.remove('text-stone', 'border-transparent');
+                activeTab.classList.add('text-taupe', 'border-taupe');
+            }
+
+            const blocks = document.querySelectorAll('.menu-category-block');
+            blocks.forEach(block => {
+                block.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                if (category === 'all') {
+                    // Show ALL categories (Pasta, Dessert, Beverages)
+                    block.classList.remove('hidden');
+                    setTimeout(() => {
+                        block.style.opacity = '1';
+                        block.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    if (block.getAttribute('data-category') === category) {
+                        block.classList.remove('hidden');
+                        setTimeout(() => {
+                            block.style.opacity = '1';
+                            block.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        block.style.opacity = '0';
+                        block.style.transform = 'translateY(15px)';
+                        setTimeout(() => {
+                            block.classList.add('hidden');
+                        }, 350);
+                    }
+                }
+            });
+        }
+
+        // LIGHTBOX CONTROLS
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        function updateLightboxContent() {
+            const item = galleryItems[currentLightboxIndex];
+            const img = document.getElementById('lightbox-img');
+            img.src = item.src;
+            document.getElementById('lightbox-caption').innerText = item.caption;
+            document.getElementById('lightbox-counter').innerText = `0${currentLightboxIndex + 1} / 0${galleryItems.length}`;
+        }
+
+        function nextLightboxImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryItems.length;
+            updateLightboxContent();
+        }
+
+        function prevLightboxImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateLightboxContent();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // FRONTEND RESERVATION FORM HANDLING
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('res-name').value;
+            const phone = document.getElementById('res-phone').value;
+            const date = document.getElementById('res-date').value;
+            const time = document.getElementById('res-time').value;
+            const guests = document.getElementById('res-guests').value;
+            const seating = document.getElementById('res-seating').value;
+            const childchair = document.getElementById('res-childchair').checked ? '是 (Yes)' : '否 (No)';
+            const notes = document.getElementById('res-notes').value || '無 (None)';
+
+            const summaryHtml = `
+                <div class="flex justify-between"><span>預約姓名：</span><span class="text-ivory">${name}</span></div>
+                <div class="flex justify-between"><span>電話號碼：</span><span class="text-ivory">${phone}</span></div>
+                <div class="flex justify-between"><span>用餐日期：</span><span class="text-ivory">${date}</span></div>
+                <div class="flex justify-between"><span>用餐時間：</span><span class="text-ivory">${time}</span></div>
+                <div class="flex justify-between"><span>用餐人數：</span><span class="text-ivory">${guests} 位</span></div>
+                <div class="flex justify-between"><span>座位偏好：</span><span class="text-ivory">${seating}</span></div>
+                <div class="flex justify-between"><span>兒童座椅：</span><span class="text-ivory">${childchair}</span></div>
+                <div class="border-t border-silver/10 pt-2 flex justify-between"><span>特殊需求：</span><span class="text-ivory">${notes}</span></div>
+            `;
+
+            document.getElementById('modal-summary-content').innerHTML = summaryHtml;
+            document.getElementById('reservation-modal').classList.remove('hidden');
+        }
+
+        function closeReservationModal() {
+            document.getElementById('reservation-modal').classList.add('hidden');
+        }
+
+        function finishReservation() {
+            closeReservationModal();
+            document.getElementById('reservation-form').reset();
+            alert('感謝您的展示訂位！FORMA 期待您的蒞臨。');
+        }
+
+        // ================= FEATURE 1-B: TITLE DECONSTRUCTION LOGIC =================
+        function setupDeconstructableTitles() {
+            const titleElements = document.querySelectorAll('.deconstructable');
+            titleElements.forEach(el => {
+                if (el.dataset.deconstructPrepared) return;
+                
+                const rawText = el.textContent;
+                el.textContent = '';
+                
+                for (let i = 0; i < rawText.length; i++) {
+                    const char = rawText[i];
+                    const span = document.createElement('span');
+                    span.className = 'deconstruct-char';
+                    if (char === ' ') {
+                        span.innerHTML = '&nbsp;';
+                    } else {
+                        span.textContent = char;
+                    }
+                    el.appendChild(span);
+                }
+                el.dataset.deconstructPrepared = 'true';
+            });
+        }
+
+        // DESKTOP CUSTOM CURSOR & TITLE MOUSE DECONSTRUCTION
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth >= 1024) {
+                if (cursor && cursorDot) {
+                    cursor.style.left = `${e.clientX}px`;
+                    cursor.style.top = `${e.clientY}px`;
+                    cursorDot.style.left = `${e.clientX}px`;
+                    cursorDot.style.top = `${e.clientY}px`;
+                }
+
+                // Interactive Deconstruction Effect on Proximity
+                const chars = document.querySelectorAll('.deconstruct-char');
+                chars.forEach(charSpan => {
+                    const rect = charSpan.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+
+                    if (dist < 70) {
+                        const angle = Math.atan2(centerY - e.clientY, centerX - e.clientX);
+                        const intensity = (1 - dist / 70);
+                        const moveX = Math.cos(angle) * intensity * 14;
+                        const moveY = Math.sin(angle) * intensity * 14;
+                        const rotate = (Math.random() - 0.5) * intensity * 25;
+
+                        charSpan.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) rotate(${rotate}deg)`;
+                        charSpan.style.opacity = `${1 - intensity * 0.35}`;
+                        charSpan.classList.add('deconstructed');
+                    } else {
+                        charSpan.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+                        charSpan.style.opacity = '1';
+                        charSpan.classList.remove('deconstructed');
+                    }
+                });
+            }
+        });
+
+        // Reset title characters when mouse leaves window
+        document.addEventListener('mouseleave', () => {
+            const chars = document.querySelectorAll('.deconstruct-char');
+            chars.forEach(charSpan => {
+                charSpan.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+                charSpan.style.opacity = '1';
+                charSpan.classList.remove('deconstructed');
+            });
+        });
+
+        // UNIFIED SCROLL REVEAL OBSERVER
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        }
+
+        // NAVBAR SCROLL BACKGROUND CHANGE
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-obsidian/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-silver/10');
+                nav.classList.remove('bg-transparent', 'py-6');
+            } else {
+                nav.classList.remove('bg-obsidian/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-silver/10');
+                nav.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // INITIALIZATION ON WINDOW LOAD
+        window.onload = function () {
+            // Set min date for datepicker to today
+            const dateInput = document.getElementById('res-date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+
+            // Setup Deconstruction DOM spans
+            setupDeconstructableTitles();
+
+            // Handle direct Hash Router
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['home', 'about', 'menu', 'gallery', 'reservation', 'location'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+
+            initScrollAnimations();
+        }
+    </script>
+</body>
+</html>
